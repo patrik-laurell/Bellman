@@ -1,5 +1,6 @@
-
-
+<?php
+require_once "conn.php";
+?>
 <html>
 <head>
 	<link href="bellman.css" rel="stylesheet" type="text/css" >
@@ -7,13 +8,9 @@
 
 <body>
 	<?php
-	if(!mysql_connect("localhost", "root", "kallvik"))
-	{
-		die("Could not connect to database." . mysql_error());
-	}
-	mysql_select_db("presentation");
 	
-	$result=mysql_query("SELECT * FROM users ORDER BY points DESC;");
+	$result=mysql_query("SELECT * FROM users ORDER BY points DESC;")
+	or die(mysql_error());
 	
 	echo '<div class="highscore">';
 	echo "<h1> Resultat </h1>";

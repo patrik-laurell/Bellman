@@ -1,26 +1,5 @@
 <?php
-	function db_config()
-	{
-		$link = mysql_connect('localhost', 'root', 'kallvik');
-		if(!$link)
-		{
-			die('Could not connect. ' . mysql_error());
-			return false; 
-		}
-		else
-		{
-			return true;
-		}
-		$c_db=mysql_query("CREATE DATABASE presentation");
-		if(!$c_db)
-		{
-			die('Could not create database.');
-		}
-	}
-	
-	db_config();
-	
-	mysql_select_db("presentation");
+require_once "conn.php";
 
 	$name=$_POST["name"];
 	$in1=$_POST["in1"];
@@ -48,11 +27,8 @@
 	}
 	
 	$sql="INSERT INTO users(name, points) VALUES('$name', '$points')";
-	
-	if(!mysql_query($sql))
-	{
-		die('Could not insert data. ' . mysql_error());
-	}
+	$result = mysql_query($sql) or die(mysql_error());
+
 ?>	
 
 <html>
